@@ -24,7 +24,7 @@ def create_app(test_config=None):
     app.config.from_mapping(
         SECRET_KEY='আপনার জেনারেট করা শক্তিশালী কী এখানে বসান',
         # নিচের এই লাইনে আপনার PostgreSQL লিঙ্কটি বসানো হয়েছে
-        DATABASE='postgresql://atopip_user:QW7SpBuDChO4yeMGMedeodl5lYEk9zYg@dpg-d2van9nfte5s73btn8hg-a.oregon-postgres.render.com/atopip',
+        DATABASE='postgresql://atopip_user:QW7SpBuDChO4yeMGMedeodl5lYEk9zYg@dpg-d2van9nfte5s73btn8hg-a/atopip',
         PERMANENT_SESSION_LIFETIME=timedelta(days=30)
     )
 
