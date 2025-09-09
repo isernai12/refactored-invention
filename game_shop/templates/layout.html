@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="bn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>গেম শপ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #00aaff; /* উজ্জ্বল নীল */
+            --background-dark: #121212;
+            --background-light: #1e1e1e;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --border-color: #333333;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+        }
+
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            margin: 0; 
+            background: var(--background-dark); 
+            color: var(--text-primary);
+        }
+
+        /* === নেভিগেশন বার === */
+        nav { 
+            background: var(--background-light); 
+            color: var(--text-primary); 
+            padding: 1rem 2rem; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+        nav a { 
+            color: var(--text-primary); 
+            text-decoration: none; 
+            margin-right: 20px; 
+            font-weight: 500;
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+        nav a:hover { 
+            color: var(--primary-color);
+            text-shadow: 0 0 5px var(--primary-color);
+        }
+        nav .nav-left .logo {
+             font-weight: 700;
+             font-size: 1.5rem;
+             color: #fff;
+        }
+         nav .nav-left .logo:hover {
+             color: var(--primary-color);
+             text-shadow: none;
+        }
+
+        /* === অ্যাডমিন প্যানেল ড্রপডাউন === */
+        .admin-panel-container {
+            display: inline-block; 
+            position: relative;
+        }
+        #admin-dropdown {
+            display: none; 
+            position: absolute; 
+            background-color: var(--background-light);
+            min-width: 220px; 
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5); 
+            z-index: 1; 
+            right: 0;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            overflow: hidden; /* for border-radius */
+            padding: 5px 0;
+        }
+        .admin-panel-container:hover #admin-dropdown {
+            display: block;
+        }
+        #admin-dropdown a {
+            display: block; 
+            padding: 12px 20px;
+            margin: 0;
+        }
+        #admin-dropdown hr {
+            margin: 5px 0;
+            border-color: var(--border-color);
+        }
+        #admin-dropdown a:hover {
+            background-color: var(--border-color);
+        }
+
+        /* === প্রধান কন্টেইনার === */
+        .container { 
+            max-width: 1200px; 
+            margin: 30px auto; 
+            padding: 30px; 
+            background: var(--background-light); 
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* === ফ্ল্যাশ মেসেজ === */
+        .flash { 
+            padding: 1em; 
+            margin-bottom: 1.5em; 
+            border: 1px solid var(--primary-color); 
+            border-radius: 6px; 
+            background: rgba(0, 170, 255, 0.1); 
+            color: var(--primary-color); 
+        }
+
+        /* === টেবিল === */
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 25px; 
+        }
+        th, td { 
+            padding: 15px; 
+            text-align: left; 
+            border-bottom: 1px solid var(--border-color); 
+        }
+        th { 
+            background-color: #2a2a2a; 
+            color: #fff;
+            font-weight: 600;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* === ফর্ম === */
+        .form-section { 
+            background: var(--background-dark); 
+            padding: 25px; 
+            border-radius: 8px; 
+            margin-bottom: 30px; 
+            border: 1px solid var(--border-color);
+        }
+        form { margin-top: 1em; }
+        input[type=text], input[type=number], input[type=password], input[type=url], select, textarea { 
+            width: 100%; 
+            padding: 12px; 
+            margin-bottom: 15px; 
+            border: 1px solid var(--border-color); 
+            border-radius: 6px; 
+            box-sizing: border-box;
+            background: #2c2c2c;
+            color: var(--text-primary);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 10px rgba(0, 170, 255, 0.5);
+        }
+
+        /* === বাটন === */
+        input[type=submit], button, .button { 
+            display: inline-block; 
+            background: var(--primary-color); 
+            color: white; 
+            padding: 12px 20px; 
+            border: none; 
+            cursor: pointer; 
+            border-radius: 6px; 
+            text-decoration: none; 
+            font-size: 1em;
+            font-weight: 600;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        input[type=submit]:hover, button:hover, .button:hover {
+            background: #0088cc;
+            transform: translateY(-2px);
+        }
+        .btn-danger { background-color: var(--danger-color); }
+        .btn-danger:hover { background-color: #c82333; }
+        .btn-secondary { background-color: #5a6268; }
+        .btn-secondary:hover { background-color: #4a4f54; }
+
+        .actions a, .actions form { 
+            display: inline-block; 
+            margin-right: 8px; 
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-left">
+            <a href="{{ url_for('views.home') }}" class="logo">গেম শপ</a>
+            {% if g.user %}
+                <a href="{{ url_for('views.my_orders') }}">My Orders</a>
+                <a href="{{ url_for('user_auth.wallet') }}">My Wallet</a>
+            {% endif %}
+        </div>
+        <div class="nav-right">
+            {% if g.user %}
+                <a href="{{ url_for('user_auth.logout') }}">Logout ({{ g.user.username }})</a>
+            {% else %}
+                <a href="{{ url_for('user_auth.login') }}">Login</a>
+                <a href="{{ url_for('user_auth.register') }}">Register</a>
+            {% endif %}
+
+            {% if g.admin %}
+                <span style="color: #444;">|</span>
+                <div class="admin-panel-container">
+                    <a href="#" style="color: var(--primary-color);">Admin Panel</a>
+                    <div id="admin-dropdown">
+                        <a href="{{ url_for('admin.dashboard') }}">ড্যাশবোর্ড</a>
+                        <hr>
+                        <a href="{{ url_for('admin.manage_games') }}">Manage Games</a>
+                        <a href="{{ url_for('admin.manage_categories') }}">Manage Categories</a>
+                        <a href="{{ url_for('admin.manage_products') }}">Manage Products</a>
+                        <hr>
+                        <a href="{{ url_for('admin.view_orders') }}">অর্ডার দেখুন</a>
+                        <a href="{{ url_for('admin.wallet_deposits') }}">Wallet Deposits</a>
+                        <hr>
+                        <a href="{{ url_for('admin.banners') }}">ব্যানার</a>
+                        <a href="{{ url_for('admin.notices') }}">নোটিস</a>
+                        <a href="{{ url_for('admin.popup') }}">পপ-আপ</a>
+                        <hr>
+                        <a href="{{ url_for('admin.manage_wallets') }}">Manage Wallets</a>
+                        <a href="{{ url_for('admin.payment_settings') }}">পেমেন্ট সেটিংস</a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </nav>
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
